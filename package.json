@@ -23,7 +23,12 @@
     "type": "git",
     "url": "git+https://github.com/wobsoriano/solid-apexcharts.git"
   },
-  "keywords": [],
+  "keywords": [
+    "solid",
+    "apexcharts",
+    "charts",
+    "visualizations"
+  ],
   "author": "Robert Soriano",
   "license": "MIT",
   "homepage": "https://github.com/wobsoriano/solid-apexcharts#readme",
