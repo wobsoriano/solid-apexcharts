@@ -77,7 +77,7 @@ const extend = (target: Record<any, any>, source: Record<any, any>) => {
 };
 
 const SolidApexCharts: Component<Props> = (props) => {
-  let el: HTMLDivElement | undefined;
+  let el: HTMLDivElement;
   let chart: ApexCharts;
 
   const merged = mergeProps(
