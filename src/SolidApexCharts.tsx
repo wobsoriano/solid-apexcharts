@@ -22,8 +22,8 @@ interface Props {
   options: Store<Record<any, any>>;
   type: ChartType;
   series: Store<ChartSeries> | ChartSeries;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
 }
 
 const isObject = (item: any) => {
