@@ -61,7 +61,7 @@ Changing the props will automatically update the chart. You only need to call th
 ```tsx
 import { useApexCharts } from 'solid-apexcharts';
 
-ApexCharts.exec('solidchat-example', 'updateSeries', [
+ApexCharts.exec('solidchart-example', 'updateSeries', [
   {
     name: 'series-1',
     data: [60, 40, 20, 50, 49, 60, 95, 72],
