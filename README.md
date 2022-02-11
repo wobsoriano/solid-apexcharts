@@ -1,6 +1,6 @@
 # solid-apexcharts
 
-Build interactive visualizations in Solid.
+Build interactive visualizations in Solid. Powered by [ApexCharts](https://apexcharts.com/).
 
 ## Quick start
 
