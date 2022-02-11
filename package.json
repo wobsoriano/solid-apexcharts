@@ -28,6 +28,7 @@
   "license": "MIT",
   "homepage": "https://github.com/{{ me }}/{{ name_of_lib }}#readme",
   "dependencies": {
+    "apexcharts": "^3.33.1",
     "solid-js": "^1.1.7"
   },
   "devDependencies": {
