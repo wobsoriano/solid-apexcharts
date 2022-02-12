@@ -1,4 +1,5 @@
-import ApexCharts from 'apexcharts';
+// @ts-ignore
+import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
 import { Component, createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
 import { Store, unwrap } from 'solid-js/store';
 
@@ -16,7 +17,28 @@ type ChartType =
   | 'heatmap'
   | 'candlestick';
 
-type ChartSeries = ApexAxisChartSeries | ApexNonAxisChartSeries;
+export interface ApexAxisChartSeries {
+  name?: string;
+  type?: string;
+  color?: string;
+  data:
+    | (number | null)[]
+    | {
+        x: any;
+        y: any;
+        fillColor?: string;
+        strokeColor?: string;
+        meta?: any;
+        goals?: any;
+      }[]
+    | [number, number | null][]
+    | [number, (number | null)[]][];
+}
+[];
+
+export type ApexNonAxisChartSeries = number[];
+
+export type ChartSeries = ApexAxisChartSeries | ApexNonAxisChartSeries;
 
 interface Props {
   options: Store<Record<any, any>>;
