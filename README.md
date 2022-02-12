@@ -46,7 +46,7 @@ export default App;
 
 This will render the following chart
 
-<p><a href="https://github.com/wobsoriano/solid-apexcharts/blob/main/chartexample.svg"><img src="https://github.com/wobsoriano/solid-apexcharts/blob/main/chartexample.svg"></a></p>
+<p><a href="https://github.com/wobsoriano/solid-apexcharts/blob/master/chartexample.svg"><img src="https://github.com/wobsoriano/solid-apexcharts/blob/master/chartexample.svg"></a></p>
 
 ## Props
 
