@@ -18,6 +18,7 @@
   "scripts": {
     "build": "rollup -c",
     "release": "bumpp --commit --push --tag && pnpm publish",
+    "lint": "eslint \"**/*.{ts,js,tsx,jsx}\"",
     "prepublishOnly": "pnpm build"
   },
   "repository": {
@@ -38,9 +39,17 @@
     "solid-js": "^1.1.7"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.16.1",
     "bumpp": "^7.1.1",
+    "eslint": "^8.10.0",
     "rollup": "^2.69.1",
     "rollup-preset-solid": "^1.4.0",
     "typescript": "^4.4.4"
-  }
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  },
+  "eslintIgnore": [
+    "dist"
+  ]
 }
