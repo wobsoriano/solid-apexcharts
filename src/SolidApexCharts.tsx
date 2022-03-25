@@ -1,9 +1,9 @@
 // @ts-expect-error: Apexcharts esm exports
 import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
-import type { Component } from 'solid-js';
+import type { Accessor, Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
-import type { Store } from 'solid-js/store';
 import { unwrap } from 'solid-js/store';
+import { defu } from 'defu';
 
 type ChartType =
   | 'line'
@@ -42,64 +42,15 @@ export type ApexAxisChartSeries = ApexAxisChart[];
 
 export type ChartSeries = ApexAxisChartSeries | ApexNonAxisChartSeries;
 
+type AnyObj = Record<string, any>;
+
 interface Props {
-  options: Store<Record<any, any>>
+  options: Accessor<AnyObj> | AnyObj
   type: ChartType
-  series: Store<ChartSeries> | ChartSeries
+  series: Accessor<ChartSeries> | ChartSeries
   width?: string | number
   height?: string | number
 }
-
-const isObject = (item: any) => {
-  return (
-    item && typeof item === 'object' && !Array.isArray(item) && item != null
-  );
-};
-
-const extend = (target: Record<any, any>, source: Record<any, any>) => {
-  if (typeof Object.assign !== 'function') {
-    (function() {
-      Object.assign = function(target: any) {
-        // We must check against these specific cases.
-        if (target === undefined || target === null)
-          throw new TypeError('Cannot convert undefined or null to object');
-
-        const output = Object(target);
-        for (let index = 1; index < arguments.length; index++) {
-          // eslint-disable-next-line prefer-rest-params
-          const source = arguments[index];
-          if (source !== undefined && source !== null) {
-            for (const nextKey in source)
-              if (source.nextKey) output[nextKey] = source[nextKey];
-          }
-        }
-        return output;
-      };
-    })();
-  }
-
-  const output = Object.assign({}, target);
-  if (isObject(target) && isObject(source)) {
-    Object.keys(source).forEach((key) => {
-      if (isObject(source[key])) {
-        if (!(key in target)) {
-          Object.assign(output, {
-            [key]: source[key],
-          });
-        }
-        else {
-          output[key] = extend(target[key], source[key]);
-        }
-      }
-      else {
-        Object.assign(output, {
-          [key]: source[key],
-        });
-      }
-    });
-  }
-  return output;
-};
 
 const SolidApexCharts: Component<Props> = (props) => {
   let el: HTMLDivElement;
@@ -118,6 +69,7 @@ const SolidApexCharts: Component<Props> = (props) => {
   const init = () => {
     const newOptions = {
       chart: {
+        // @ts-expect-error: For accessor options
         type: merged.type || merged.options.chart.type,
         height: merged.height,
         width: merged.width,
@@ -126,7 +78,7 @@ const SolidApexCharts: Component<Props> = (props) => {
       series: merged.series,
     };
 
-    const config = extend(unwrap(merged.options), newOptions);
+    const config = defu(unwrap(merged.options), newOptions);
     chart = new ApexCharts(el, config);
     chart.render();
   };

@@ -4,6 +4,7 @@ specifiers:
   '@antfu/eslint-config-ts': ^0.18.9
   apexcharts: ^3.33.1
   bumpp: ^7.1.1
+  defu: ^6.0.0
   eslint: ^8.10.0
   eslint-plugin-solid: ^0.4.4
   lint-staged: ^12.3.5
@@ -15,6 +16,7 @@ specifiers:
 
 dependencies:
   apexcharts: 3.33.1
+  defu: 6.0.0
   solid-js: 1.1.7
 
 devDependencies:
@@ -2020,6 +2022,10 @@ packages:
     dependencies:
       object-keys: 1.1.1
     dev: true
+
+  /defu/6.0.0:
+    resolution: {integrity: sha512-t2MZGLf1V2rV4VBZbWIaXKdX/mUcYW0n2znQZoADBkGGxYL8EWqCuCZBmJPJ/Yy9fofJkyuuSuo5GSwo0XdEgw==}
+    dev: false
 
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}

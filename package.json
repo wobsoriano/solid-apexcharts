@@ -35,6 +35,7 @@
   "homepage": "https://github.com/wobsoriano/solid-apexcharts#readme",
   "dependencies": {
     "apexcharts": "^3.33.1",
+    "defu": "^6.0.0",
     "solid-js": "^1.1.7"
   },
   "devDependencies": {
