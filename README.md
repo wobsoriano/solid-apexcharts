@@ -7,17 +7,17 @@ Build interactive visualizations in Solid. Powered by [ApexCharts](https://apexc
 Install it:
 
 ```bash
-pnpm add apexcharts solid-apexcharts
+pnpm add apexcharts solid-apexcharts #or npm or yarn
 ```
 
 Use it:
 
 ```tsx
-import { createStore } from 'solid-js/store';
+import { createSignal } from 'solid-js/store';
 import { SolidApexCharts } from 'solid-apexcharts';
 
 const App = () => {
-  const [options] = createStore({
+  const [options] = createSignal({
     chart: {
       id: 'solidchart-example',
     },
@@ -25,7 +25,7 @@ const App = () => {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   });
-  const [series] = createStore({
+  const [series] = createSignal({
     list: [
       {
         name: 'series-1',
@@ -33,6 +33,8 @@ const App = () => {
       },
     ],
   });
+
+  // options and series can be a store or signal
 
   return (
     <div>
@@ -63,9 +65,9 @@ This will render the following chart
 Changing the props will automatically update the chart. You only need to call these methods to update the chart forcefully.
 
 ```tsx
-import { useApexCharts } from 'solid-apexcharts';
+import { createApexCharts } from 'solid-apexcharts';
 
-const ApexCharts = useApexCharts();
+const ApexCharts = createApexCharts();
 
 ApexCharts.exec('solidchart-example', 'updateSeries', [
   {
@@ -79,4 +81,4 @@ ApexCharts.exec('solidchart-example', 'updateSeries', [
 
 ## License
 
-MIT License © 2022 [Robert Soriano](https://github.com/wobsoriano)
+MIT

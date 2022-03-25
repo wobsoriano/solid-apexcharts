@@ -1,4 +1,4 @@
 import SolidApexCharts from './SolidApexCharts';
-import { useApexCharts } from './useApexCharts';
+import { createApexCharts } from './createApexCharts';
 
-export { SolidApexCharts, useApexCharts };
+export { SolidApexCharts, createApexCharts };
