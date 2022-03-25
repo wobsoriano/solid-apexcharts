@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <div>
-      <SolidApexCharts width="500" type="bar" options={options} series={series.list} />
+      <SolidApexCharts width="500" type="bar" options={options()} series={series().list} />
     </div>
   );
 };
