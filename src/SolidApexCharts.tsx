@@ -91,6 +91,7 @@ const SolidApexCharts: Component<Props> = (props) => {
     on(
       () => merged.series,
       () => {
+        // @ts-expect-error: Missing apexchart types
         chart.updateSeries(merged.series);
       },
       {
