@@ -19,7 +19,7 @@ const App = () => {
     ],
   });
 
-  return <SolidApexCharts fallback={<div>hello</div>} width="500" type="bar" options={options} series={series.list} />;
+  return <SolidApexCharts width="500" type="bar" options={options} series={series.list} />;
 };
 
 export default App;
