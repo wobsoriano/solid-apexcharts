@@ -1,5 +1,4 @@
-// @ts-expect-error: Apexcharts esm exports
-import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
+import ApexCharts from 'apexcharts';
 
 export function createApexCharts() {
   return ApexCharts;
