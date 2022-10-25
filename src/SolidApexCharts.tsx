@@ -1,58 +1,24 @@
 import ApexCharts from 'apexcharts';
-import type { Accessor, Component } from 'solid-js';
+import type { ApexOptions } from 'apexcharts';
+import type { Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
 import { unwrap } from 'solid-js/store';
 import { defu } from 'defu';
 
-type ChartType =
-  | 'line'
-  | 'area'
-  | 'bar'
-  | 'radar'
-  | 'histogram'
-  | 'pie'
-  | 'donut'
-  | 'radialBar'
-  | 'scatter'
-  | 'bubble'
-  | 'heatmap'
-  | 'candlestick'
-  | 'rangeArea';
+type NonNullable<T> = Exclude<T, null | undefined>;
+type ChartType = NonNullable<NonNullable<ApexOptions['chart']>['type']>;
+type ChartSeries = NonNullable<ApexOptions['series']>;
 
-export interface ApexAxisChart {
-  name?: string
-  type?: string
-  color?: string
-  data:
-  | (number | null)[]
-  | {
-    x: any
-    y: any
-    fillColor?: string
-    strokeColor?: string
-    meta?: any
-    goals?: any
-  }[]
-  | [number, number | null][]
-  | [number, (number | null)[]][]
-}
-
-export type ApexNonAxisChartSeries = number[];
-export type ApexAxisChartSeries = ApexAxisChart[];
-
-export type ChartSeries = ApexAxisChartSeries | ApexNonAxisChartSeries;
-
-type AnyObj = Record<string, any>;
-
-interface Props {
-  options: Accessor<AnyObj> | AnyObj
+export interface ApexChartProps {
   type: ChartType
-  series: Accessor<ChartSeries> | ChartSeries
+  options: ApexOptions
+  series: ChartSeries
   width?: string | number
   height?: string | number
+  [key: string]: any
 }
 
-const SolidApexCharts: Component<Props> = (props) => {
+const SolidApexCharts: Component<ApexChartProps> = (props) => {
   let el: HTMLDivElement;
   let chart: ApexCharts;
 
@@ -69,8 +35,7 @@ const SolidApexCharts: Component<Props> = (props) => {
   const init = () => {
     const newOptions = {
       chart: {
-        // @ts-expect-error: For accessor options
-        type: merged.type || merged.options.chart.type,
+        type: merged.type || merged.options.chart?.type,
         height: merged.height,
         width: merged.width,
         events: {},
@@ -91,7 +56,6 @@ const SolidApexCharts: Component<Props> = (props) => {
     on(
       () => merged.series,
       () => {
-        // @ts-expect-error: Missing apexchart types
         chart.updateSeries(merged.series);
       },
       {
