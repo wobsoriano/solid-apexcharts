@@ -35,12 +35,12 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
   const init = () => {
     const newOptions = {
       chart: {
-        type: merged.type || merged.options.chart?.type,
+        type: merged.type || unwrap(merged.options)?.chart?.type,
         height: merged.height,
         width: merged.width,
         events: {},
       },
-      series: merged.series,
+      series: unwrap(merged.series),
     };
 
     const config = defu(unwrap(merged.options), newOptions);
