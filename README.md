@@ -35,11 +35,7 @@ const App = () => {
 
   // options and series can be a store or signal
 
-  return (
-    <div>
-      <SolidApexCharts width="500" type="bar" options={options} series={series} />
-    </div>
-  );
+  return <SolidApexCharts width="500" type="bar" options={options} series={series} />;
 };
 
 export default App;
