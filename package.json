@@ -38,7 +38,9 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite serve dev",
+    "playground:dev": "vite serve playground",
+    "playground:preview": "vite preview playground",
+    "playground:build": "vite build playground",
     "test": "echo \"test not setup\"",
     "build": "rollup -c",
     "prepublishOnly": "pnpm build",
