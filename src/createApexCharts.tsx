@@ -1,5 +1,5 @@
 // @ts-expect-error: Internal
-import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
+import ApexCharts from 'apexcharts/dist/apexcharts.esm';
 
 // https://github.com/apexcharts/apexcharts.js/blob/main/types/apexcharts.d.ts
 export function createApexCharts(): {
