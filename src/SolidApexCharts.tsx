@@ -1,5 +1,4 @@
-// @ts-expect-error: Apexcharts esm exports
-import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
+import ApexCharts from 'apexcharts';
 import type { Accessor, Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
 import { unwrap } from 'solid-js/store';
@@ -17,7 +16,8 @@ type ChartType =
   | 'scatter'
   | 'bubble'
   | 'heatmap'
-  | 'candlestick';
+  | 'candlestick'
+  | 'rangeArea';
 
 export interface ApexAxisChart {
   name?: string
