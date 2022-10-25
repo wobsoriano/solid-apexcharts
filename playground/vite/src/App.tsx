@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store';
-import { SolidApexCharts } from 'solid-apexcharts';
+import { SolidApexCharts } from 'solid-apexcharts'
 
 const App = () => {
   const [options] = createStore({
