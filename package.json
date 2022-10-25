@@ -2,59 +2,67 @@
   "name": "solid-apexcharts",
   "type": "module",
   "version": "0.1.6",
+  "private": false,
+  "packageManager": "pnpm@7.5.0",
   "description": "Solid component for ApexCharts",
-  "keywords": [
-    "solid",
-    "apexcharts",
-    "charts",
-    "visualizations"
-  ],
-  "license": "MIT",
   "author": "Robert Soriano",
+  "license": "MIT",
+  "homepage": "https://github.com/wobsoriano/solid-apexcharts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wobsoriano/solid-apexcharts.git"
   },
-  "main": "dist/esm/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/wobsoriano/solid-apexcharts/issues"
+  },
+  "keywords": [
+    "solid"
+  ],
+  "sideEffects": false,
   "exports": {
     ".": {
       "solid": "./dist/source/index.jsx",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "browser": {
+        "require": "./dist/cjs/index.js",
+        "import": "./dist/esm/index.js"
+      },
+      "node": "./dist/cjs/index.js"
     }
   },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
+    "dev": "vite serve dev",
+    "test": "echo \"test not setup\"",
     "build": "rollup -c",
+    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit",
     "release": "bumpp --commit --push --tag && pnpm publish",
-    "prepublishOnly": "pnpm build"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-  "homepage": "https://github.com/wobsoriano/solid-apexcharts#readme",
+  "peerDependencies": {
+    "solid-js": ">=1.0.0"
+  },
   "dependencies": {
-    "apexcharts": "^3.33.1",
-    "defu": "^6.0.0",
-    "solid-js": "^1.1.7"
+    "defu": "^6.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.18.9",
-    "bumpp": "^7.1.1",
-    "eslint": "^8.10.0",
-    "eslint-plugin-solid": "^0.4.4",
-    "lint-staged": "^12.3.5",
-    "rollup": "^2.69.1",
+    "@antfu/eslint-config-ts": "^0.27.0",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-solid": "^0.7.4",
+    "rollup": "^2.77.2",
     "rollup-preset-solid": "^1.4.0",
-    "simple-git-hooks": "^2.7.0",
-    "typescript": "^4.4.4"
-  },
-  "lint-staged": {
-    "src/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ]
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "solid-js": "^1.4.8",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4",
+    "vite-plugin-solid": "^2.3.0"
   }
 }
