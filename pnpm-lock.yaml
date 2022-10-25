@@ -1,34 +1,37 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@antfu/eslint-config-ts': ^0.27.0
-  apexcharts: ^3.36.0
-  bumpp: ^8.2.1
-  defu: ^6.1.0
-  eslint: ^8.26.0
-  eslint-plugin-solid: ^0.7.4
-  rollup: ^2.77.2
-  rollup-preset-solid: ^1.4.0
-  solid-js: ^1.4.8
-  typescript: ^4.7.4
-  vite: ^3.0.4
-  vite-plugin-solid: ^2.3.0
+importers:
 
-dependencies:
-  defu: 6.1.0
-
-devDependencies:
-  '@antfu/eslint-config-ts': 0.27.0_t7ph7dpvh7g5bfovntuojbuu4i
-  apexcharts: 3.36.0
-  bumpp: 8.2.1
-  eslint: 8.26.0
-  eslint-plugin-solid: 0.7.4_t7ph7dpvh7g5bfovntuojbuu4i
-  rollup: 2.77.2
-  rollup-preset-solid: 1.4.0
-  solid-js: 1.4.8
-  typescript: 4.7.4
-  vite: 3.0.4
-  vite-plugin-solid: 2.3.0_solid-js@1.4.8+vite@3.0.4
+  .:
+    specifiers:
+      '@antfu/eslint-config-ts': ^0.27.0
+      apexcharts: ^3.36.0
+      bumpp: ^8.2.1
+      defu: ^6.1.0
+      eslint: ^8.26.0
+      eslint-plugin-solid: ^0.7.4
+      rollup: ^2.77.2
+      rollup-preset-solid: ^1.4.0
+      solid-apexcharts: workspace:*
+      solid-js: ^1.4.8
+      typescript: ^4.7.4
+      vite: ^3.0.4
+      vite-plugin-solid: ^2.3.0
+    dependencies:
+      defu: 6.1.0
+    devDependencies:
+      '@antfu/eslint-config-ts': 0.27.0_t7ph7dpvh7g5bfovntuojbuu4i
+      apexcharts: 3.36.0
+      bumpp: 8.2.1
+      eslint: 8.26.0
+      eslint-plugin-solid: 0.7.4_t7ph7dpvh7g5bfovntuojbuu4i
+      rollup: 2.77.2
+      rollup-preset-solid: 1.4.0
+      solid-apexcharts: 'link:'
+      solid-js: 1.4.8
+      typescript: 4.7.4
+      vite: 3.0.4
+      vite-plugin-solid: 2.3.0_solid-js@1.4.8+vite@3.0.4
 
 packages:
 

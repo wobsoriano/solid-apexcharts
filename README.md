@@ -13,7 +13,8 @@ pnpm add apexcharts solid-apexcharts #or npm or yarn
 Use it:
 
 ```tsx
-import { createSignal } from 'solid-js/store';
+import { createSignal } from 'solid-js';
+
 import { SolidApexCharts } from 'solid-apexcharts';
 
 const App = () => {
