@@ -1,4 +1,5 @@
-import ApexCharts from 'apexcharts';
+// @ts-expect-error: Internal
+import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
 import type { ApexOptions } from 'apexcharts';
 import type { Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
