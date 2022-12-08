@@ -1,3 +1,7 @@
+<p>
+  <img width="100%" src="https://assets.solidjs.com/banner?type=solid-apexcharts&background=tiles&project=%20" alt="solid-apexcharts">
+</p>
+
 # solid-apexcharts
 
 Build interactive visualizations in Solid. Powered by [ApexCharts](https://apexcharts.com/).
