@@ -20,26 +20,47 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "solid": "./dist/source/index.jsx",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js",
-      "browser": {
-        "require": "./dist/cjs/index.js",
-        "import": "./dist/esm/index.js"
+    "solid": {
+      "development": "./dist/index.dev.jsx",
+      "import": "./dist/index.jsx"
+    },
+    "browser": {
+      "development": {
+        "require": "./dist/index.dev.cjs",
+        "import": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.dev.js"
+        }
       },
-      "node": "./dist/cjs/index.js"
+      "require": "./dist/index.cjs",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "development": {
+      "require": "./dist/index.dev.cjs",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.dev.js"
+      }
+    },
+    "require": "./dist/index.cjs",
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "browser": {},
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "echo \"test not setup\"",
-    "build": "rollup -c",
+    "build": "tsup",
     "prepublishOnly": "pnpm build",
     "typecheck": "tsc --noEmit",
     "release": "bumpp --commit --push --tag && pnpm publish",
@@ -57,11 +78,13 @@
     "@antfu/eslint-config-ts": "^0.27.0",
     "apexcharts": "^3.36.0",
     "bumpp": "^8.2.1",
+    "esbuild": "^0.17.1",
+    "esbuild-plugin-solid": "^0.4.2",
     "eslint": "^8.26.0",
     "eslint-plugin-solid": "^0.7.4",
-    "rollup": "^2.77.2",
-    "rollup-preset-solid": "^1.4.0",
     "solid-js": "^1.4.8",
+    "tsup": "^6.5.0",
+    "tsup-preset-solid": "^0.0.6",
     "typescript": "^4.7.4"
   }
 }
