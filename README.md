@@ -61,7 +61,7 @@ This will render the following chart
 | **height**   | Number/String | Possible values for height can be `100%` or `300px` or `300`                                                                                                                                     |
 | **options**  | Object        | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/)                                                                                      |
 
-## How do I update the cart?
+## How do I update the chart?
 
 Simple! Just change the `series` or any `option` and it will automatically re-render the chart.
 
