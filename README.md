@@ -81,8 +81,6 @@ function App() {
 
   return <SolidApexCharts ref={chartRef} />;
 }
-
-export default App;
 ```
 
 [Click here](https://apexcharts.com/docs/methods) to see all available methods.
