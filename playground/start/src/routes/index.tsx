@@ -1,4 +1,5 @@
 import { Title, unstable_clientOnly } from 'solid-start';
+
 const SolidApexCharts = unstable_clientOnly(() => import('~/components/Chart'));
 
 export default function Home() {

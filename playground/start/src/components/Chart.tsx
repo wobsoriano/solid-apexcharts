@@ -1,7 +1,7 @@
 import { createStore } from 'solid-js/store';
 import { SolidApexCharts } from 'solid-apexcharts';
 
-const Chart = () => {
+function Chart() {
   const [options] = createStore({
     chart: {
       id: 'solidchart-example',
@@ -18,6 +18,6 @@ const Chart = () => {
   ]);
 
   return <SolidApexCharts width="500" type="bar" options={options} series={series} />;
-};
+}
 
 export default Chart;

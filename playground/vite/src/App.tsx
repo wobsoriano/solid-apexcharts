@@ -1,8 +1,7 @@
 import { createStore } from 'solid-js/store';
 import { SolidApexCharts } from 'solid-apexcharts';
-import { onMount } from 'solid-js';
 
-const App = () => {
+function App() {
   let chartRef: unknown;
   const [options] = createStore({
     chart: {
@@ -21,13 +20,7 @@ const App = () => {
     ],
   });
 
-  onMount(() => {
-    setTimeout(() => {
-      console.log(chartRef);
-    }, 1000);
-  });
-
   return <SolidApexCharts ref={chartRef} width="500" type="bar" options={options} series={series.list} />;
-};
+}
 
 export default App;
