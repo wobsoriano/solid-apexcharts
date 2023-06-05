@@ -17,12 +17,10 @@ pnpm add apexcharts solid-apexcharts #or npm or yarn
 Use it:
 
 ```tsx
-import { createStore } from 'solid-js/store';
-
 import { SolidApexCharts } from 'solid-apexcharts';
 
 function App() {
-  const [options] = createStore({
+  const [options] = createSignal({
     chart: {
       id: 'solidchart-example',
     },
@@ -30,7 +28,7 @@ function App() {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   });
-  const [series] = createStore({
+  const [series] = createSignal({
     list: [
       {
         name: 'series-1',
@@ -41,10 +39,8 @@ function App() {
 
   // options and series can be a store or signal
 
-  return <SolidApexCharts width="500" type="bar" options={options} series={series.list} />;
+  return <SolidApexCharts width="500" type="bar" options={options()} series={series().list} />;
 }
-
-export default App;
 ```
 
 This will render the following chart
