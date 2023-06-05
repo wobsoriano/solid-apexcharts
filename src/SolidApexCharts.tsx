@@ -23,11 +23,6 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
   let rootEl: HTMLDivElement;
   let chart: ApexCharts;
 
-  function bindRef(el: HTMLDivElement) {
-    props.ref?.(el);
-    rootEl = el;
-  }
-
   const merged = mergeProps(
     {
       height: 'auto',
@@ -51,6 +46,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
 
     const config = defu(unwrap(merged.options), newOptions);
     chart = new ApexCharts(rootEl, config);
+    props.ref?.(chart);
     chart.render();
   };
 
@@ -99,7 +95,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     chart?.destroy();
   });
 
-  return <div ref={el => bindRef(el)} />;
+  return <div ref={rootEl!} />;
 };
 
 export default SolidApexCharts;
