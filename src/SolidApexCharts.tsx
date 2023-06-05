@@ -10,13 +10,15 @@ type NonNullable<T> = Exclude<T, null | undefined>;
 type ChartType = NonNullable<NonNullable<ApexOptions['chart']>['type']>;
 type ChartSeries = NonNullable<ApexOptions['series']>;
 
+type FixMeLater = any;
+
 export interface ApexChartProps {
   type: ChartType
   options: ApexOptions
   series: ChartSeries
   width?: string | number
   height?: string | number
-  [key: string]: any
+  [key: string]: FixMeLater
 }
 
 const SolidApexCharts: Component<ApexChartProps> = (props) => {
