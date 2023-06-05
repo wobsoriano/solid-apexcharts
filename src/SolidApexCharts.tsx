@@ -20,8 +20,13 @@ export interface ApexChartProps {
 }
 
 const SolidApexCharts: Component<ApexChartProps> = (props) => {
-  let el: HTMLDivElement;
+  let rootEl: HTMLDivElement;
   let chart: ApexCharts;
+
+  function bindRef(el: HTMLDivElement) {
+    props.ref?.(el);
+    rootEl = el;
+  }
 
   const merged = mergeProps(
     {
@@ -45,7 +50,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     };
 
     const config = defu(unwrap(merged.options), newOptions);
-    chart = new ApexCharts(el, config);
+    chart = new ApexCharts(rootEl, config);
     chart.render();
   };
 
@@ -94,7 +99,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     chart?.destroy();
   });
 
-  return <div ref={el!} />;
+  return <div ref={el => bindRef(el)} />;
 };
 
 export default SolidApexCharts;
