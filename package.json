@@ -21,28 +21,14 @@
   "sideEffects": false,
   "exports": {
     "solid": {
-      "development": "./dist/index.dev.jsx",
+      "development": "./dist/dev.jsx",
       "import": "./dist/index.jsx"
     },
-    "browser": {
-      "development": {
-        "require": "./dist/index.dev.cjs",
-        "import": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.dev.js"
-        }
-      },
-      "require": "./dist/index.cjs",
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
     "development": {
-      "require": "./dist/index.dev.cjs",
+      "require": "./dist/dev.cjs",
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.dev.js"
+        "default": "./dist/dev.js"
       }
     },
     "require": "./dist/index.cjs",
@@ -55,6 +41,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "browser": {},
+  "typesVersions": {},
   "files": [
     "dist"
   ],
@@ -68,8 +55,8 @@
     "lint:fix": "eslint . --fix"
   },
   "peerDependencies": {
-    "apexcharts": ">=3.40.0",
-    "solid-js": ">=1.6.0"
+    "apexcharts": "^3.40.0",
+    "solid-js": "^1.6.0"
   },
   "dependencies": {
     "defu": "^6.1.2"
