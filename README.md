@@ -61,9 +61,35 @@ This will render the following chart
 | **height**   | Number/String | Possible values for height can be `100%` or `300px` or `300`                                                                                                                                     |
 | **options**  | Object        | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/)                                                                                      |
 
+## How do I update the cart?
+
+Simple! Just change the `series` or any `option` and it will automatically re-render the chart.
+
 ## Methods
 
 Changing the props will automatically update the chart. You only need to call these methods to update the chart forcefully.
+
+```tsx
+import ApexCharts from 'apexcharts';
+
+function App() {
+  let chartRef: ApexCharts;
+
+  function updateChart() {
+    chartRef.updateOptions({ colors: newColors });
+  }
+
+  return <SolidApexCharts ref={chartRef} />;
+}
+
+export default App;
+```
+
+[Click here](https://apexcharts.com/docs/methods) to see all available methods.
+
+## How to call methods of ApexCharts without referencing the chart element?
+
+Target the chart by its `id` to call the methods from some other place
 
 ```tsx
 import { createApexCharts } from 'solid-apexcharts';
@@ -77,8 +103,6 @@ ApexCharts.exec('solidchart-example', 'updateSeries', [
   },
 ]);
 ```
-
-[Click here](https://apexcharts.com/docs/methods) to see all available methods.
 
 ## License
 
