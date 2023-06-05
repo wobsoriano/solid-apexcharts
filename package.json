@@ -16,7 +16,8 @@
     "url": "https://github.com/wobsoriano/solid-apexcharts/issues"
   },
   "keywords": [
-    "solid"
+    "solid",
+    "charts"
   ],
   "sideEffects": false,
   "exports": {
