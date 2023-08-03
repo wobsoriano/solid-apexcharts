@@ -6,18 +6,27 @@ function Chart() {
     chart: {
       id: 'solidchart-example',
     },
-    xaxis: {
-      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+    stroke: {
+      colors: ['#fff'],
     },
+    fill: {
+      opacity: 0.8,
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: 'bottom',
+        },
+      },
+    }],
   });
-  const [series] = createStore([
-    {
-      name: 'series-1',
-      data: [30, 40, 35, 50, 49, 60, 70, 91],
-    },
-  ]);
+  const [series] = createStore([14, 23, 21, 17, 15, 10, 12, 17, 21]);
 
-  return <SolidApexCharts width="500" type="bar" options={options} series={series} />;
+  return <SolidApexCharts width="500" type="polarArea" options={options} series={series} />;
 }
 
 export default Chart;
