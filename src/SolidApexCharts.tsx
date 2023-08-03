@@ -1,4 +1,4 @@
-// @ts-expect-error: Internal
+// @ts-expect-error: See https://github.com/apexcharts/apexcharts.js/issues/1955
 import ApexCharts from 'apexcharts/dist/apexcharts.esm';
 import type ApexChartsMain from 'apexcharts';
 import type { ApexOptions } from 'apexcharts';
