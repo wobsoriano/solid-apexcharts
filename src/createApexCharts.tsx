@@ -1,11 +1,5 @@
-// @ts-expect-error: Internal
-import ApexCharts from 'apexcharts/dist/apexcharts.esm';
-import type { ApexOptions } from 'apexcharts';
-
-export function createApexCharts(): {
-  exec(chartID: string, fn: string, ...args: Array<any>): any
-  getChartByID(chartID: string): ApexOptions['chart'] | undefined
-};
+// See https://github.com/apexcharts/apexcharts.js/issues/1955 for more info
+import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
 
 export function createApexCharts() {
   return ApexCharts;
