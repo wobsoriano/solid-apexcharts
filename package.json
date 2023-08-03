@@ -26,19 +26,17 @@
       "import": "./dist/index.jsx"
     },
     "development": {
-      "require": "./dist/dev.cjs",
       "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/dev.js"
       }
     },
-    "require": "./dist/index.cjs",
     "import": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "browser": {},

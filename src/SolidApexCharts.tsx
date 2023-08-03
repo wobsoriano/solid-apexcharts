@@ -1,5 +1,6 @@
 // @ts-expect-error: Internal
 import ApexCharts from 'apexcharts/dist/apexcharts.esm';
+import type ApexChartsMain from 'apexcharts';
 import type { ApexOptions } from 'apexcharts';
 import type { Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
@@ -23,7 +24,7 @@ export interface ApexChartProps {
 
 const SolidApexCharts: Component<ApexChartProps> = (props) => {
   let rootEl: HTMLDivElement;
-  let chart: ApexCharts;
+  let chart: ApexChartsMain;
 
   const merged = mergeProps(
     {
