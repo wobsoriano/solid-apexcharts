@@ -1,6 +1,5 @@
-// @ts-expect-error: See https://github.com/apexcharts/apexcharts.js/issues/1955
-import ApexCharts from 'apexcharts/dist/apexcharts.esm';
-import type ApexChartsMain from 'apexcharts';
+// See https://github.com/apexcharts/apexcharts.js/issues/1955 for more info
+import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
 import type { ApexOptions } from 'apexcharts';
 import type { Component } from 'solid-js';
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js';
@@ -24,7 +23,7 @@ export interface ApexChartProps {
 
 const SolidApexCharts: Component<ApexChartProps> = (props) => {
   let rootEl: HTMLDivElement;
-  let chart: ApexChartsMain;
+  let chart: ApexCharts;
 
   const merged = mergeProps(
     {
