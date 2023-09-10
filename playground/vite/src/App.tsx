@@ -1,12 +1,13 @@
-import { SolidApexCharts } from 'solid-apexcharts';
+import { type ApexChartProps, SolidApexCharts } from 'solid-apexcharts';
 import { createSignal, onMount } from 'solid-js';
 import type ApexCharts from 'apexcharts';
 
 function App() {
   let chartRef: ApexCharts;
-  const [options] = createSignal({
+  const [options] = createSignal<ApexChartProps['options']>({
     chart: {
       id: 'solidchart-example',
+      type: 'radialBar'
     },
     xaxis: {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
