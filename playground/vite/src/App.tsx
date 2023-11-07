@@ -7,7 +7,6 @@ function App() {
   const [options] = createSignal<ApexChartProps['options']>({
     chart: {
       id: 'solidchart-example',
-      type: 'radialBar'
     },
     xaxis: {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],

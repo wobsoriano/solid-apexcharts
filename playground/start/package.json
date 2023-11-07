@@ -10,16 +10,16 @@
     "start": "solid-start start"
   },
   "dependencies": {
-    "@solidjs/meta": "^0.28.6",
-    "@solidjs/router": "^0.8.2",
+    "@solidjs/meta": "^0.29.1",
+    "@solidjs/router": "^0.8.4",
     "solid-apexcharts": "workspace:*",
-    "solid-js": "^1.7.8",
-    "solid-start": "^0.2.30",
-    "undici": "^5.23.0"
+    "solid-js": "^1.8.5",
+    "solid-start": "^0.3.9",
+    "undici": "^5.27.2"
   },
   "devDependencies": {
-    "solid-start-node": "^0.2.30",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.8"
+    "solid-start-node": "^0.3.9",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
   }
 }

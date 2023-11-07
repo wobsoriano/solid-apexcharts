@@ -10,12 +10,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "solid-js": "^1.7.8"
+    "solid-js": "^1.8.5"
   },
   "devDependencies": {
     "solid-apexcharts": "workspace:*",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.8",
-    "vite-plugin-solid": "^2.7.0"
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-solid": "^2.7.2"
   }
 }
