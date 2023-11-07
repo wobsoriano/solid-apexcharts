@@ -1,4 +1,3 @@
-// See https://github.com/apexcharts/apexcharts.js/issues/1955 for more info
 import ApexCharts from 'apexcharts/dist/apexcharts.esm.js';
 import type { ApexOptions } from 'apexcharts';
 import type { Component } from 'solid-js';
