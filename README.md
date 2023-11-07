@@ -11,7 +11,7 @@ Build interactive visualizations in Solid. Powered by [ApexCharts](https://apexc
 Install it:
 
 ```bash
-pnpm add apexcharts solid-apexcharts #or npm or yarn
+npm install apexcharts solid-apexcharts
 ```
 
 Use it:
