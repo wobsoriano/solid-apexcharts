@@ -60,7 +60,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     on(
       () => merged.series,
       () => {
-        chart.updateSeries(merged.series);
+        chart?.updateSeries(merged.series);
       },
       {
         defer: true,
@@ -72,7 +72,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     on(
       () => merged.options,
       () => {
-        chart.updateOptions(merged.options);
+        chart?.updateOptions(merged.options);
       },
       {
         defer: true,
@@ -84,7 +84,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
     on(
       () => [merged.type, merged.height, merged.width],
       () => {
-        chart.destroy();
+        chart?.destroy();
         init();
       },
       {
