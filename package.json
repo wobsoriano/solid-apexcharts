@@ -68,7 +68,7 @@
     "esbuild-plugin-solid": "^0.5.0",
     "eslint": "^8.53.0",
     "eslint-plugin-solid": "^0.13.0",
-    "solid-js": "^1.8.5",
+    "solid-js": "^1.8.7",
     "tsup": "^7.2.0",
     "tsup-preset-solid": "^2.1.0",
     "typescript": "^5.2.2"
