@@ -1,5 +1,6 @@
 import { createStore } from 'solid-js/store';
 import { SolidApexCharts } from 'solid-apexcharts';
+import { createSignal } from 'solid-js';
 
 function Chart() {
   const [options] = createStore({
@@ -24,9 +25,9 @@ function Chart() {
       },
     }],
   });
-  const [series] = createStore([14, 23, 21, 17, 15, 10, 12, 17, 21]);
+  const [series] = createSignal([14, 23, 21, 17, 15, 10, 12, 17, 21]);
 
-  return <SolidApexCharts width="500" type="polarArea" options={options} series={series} />;
+  return <SolidApexCharts width="500" type="polarArea" options={options} series={series()} />;
 }
 
 export default Chart;
