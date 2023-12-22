@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config-ts": "^0.43.1",
+    "@types/node": "^20.10.5",
     "apexcharts": "^3.44.0",
     "bumpp": "^9.2.0",
     "esbuild": "^0.19.5",

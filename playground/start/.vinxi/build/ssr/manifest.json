@@ -1,0 +1,15 @@
+{
+  "src/components/Chart.tsx": {
+    "file": "assets/Chart-aaa75397.js",
+    "isDynamicEntry": true,
+    "src": "src/components/Chart.tsx"
+  },
+  "virtual:#vinxi/handler/ssr": {
+    "dynamicImports": [
+      "src/components/Chart.tsx"
+    ],
+    "file": "ssr.js",
+    "isEntry": true,
+    "src": "virtual:#vinxi/handler/ssr"
+  }
+}

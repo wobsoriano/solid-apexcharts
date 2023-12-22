@@ -1,0 +1,18 @@
+{
+  "src/components/Chart.tsx": {
+    "file": "assets/Chart-519ec38a.js",
+    "imports": [
+      "virtual:#vinxi/handler/client"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/components/Chart.tsx"
+  },
+  "virtual:#vinxi/handler/client": {
+    "dynamicImports": [
+      "src/components/Chart.tsx"
+    ],
+    "file": "assets/client-c608c96c.js",
+    "isEntry": true,
+    "src": "virtual:#vinxi/handler/client"
+  }
+}
