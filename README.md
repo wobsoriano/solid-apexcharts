@@ -98,6 +98,20 @@ ApexCharts.exec('solidchart-example', 'updateSeries', [
 ]);
 ```
 
+## SolidStart
+
+To use this component in SolidStart, you need to wrap your chart components with the [`clientOnly`](https://start.solidjs.com/api/clientOnly) function, making sure that the component is only rendered on the client side:
+
+```tsx
+import { clientOnly } from '@solidjs/start';
+
+const MyChart = clientOnly(() => import('~/components/Chart'));
+
+export default function Home() {
+  return <MyChart fallback={<div>Loading</div>} />;
+}
+```
+
 ## License
 
 MIT
