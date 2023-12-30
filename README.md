@@ -79,9 +79,10 @@ function App() {
 Target the chart by its `id` to call the methods from some other place
 
 ```tsx
-import { createApexCharts } from 'solid-apexcharts';
+import ApexCharts from 'apexcharts';
 
-const ApexCharts = createApexCharts();
+// or for ESM build
+// import ApexCharts from 'apexcharts/dist/apexcharts.esm.js'
 
 const [options] = createSignal({
   chart: {
