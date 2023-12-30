@@ -1,7 +1,8 @@
 import SolidApexCharts, { type ApexChartProps } from './SolidApexCharts';
-import { createApexCharts } from './createApexCharts';
+import { ApexCharts, createApexCharts } from './createApexCharts';
 
 export {
+  ApexCharts,
   SolidApexCharts,
   createApexCharts,
   type ApexChartProps,
