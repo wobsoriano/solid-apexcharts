@@ -32,8 +32,6 @@ function App() {
     },
   ]);
 
-  // options and series can be a store or signal
-
   return <SolidApexCharts width="500" type="bar" options={options()} series={series()} />;
 }
 ```
