@@ -10,14 +10,12 @@ function App() {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   })
-  const [series] = createSignal({
-    list: [
-      {
-        name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
-      },
-    ],
-  })
+  const [series] = createSignal([
+    {
+      name: 'series-1',
+      data: [30, 40, 35, 50, 49, 60, 70, 91],
+    },
+  ])
 
   onMount(() => {
     setTimeout(() => {
@@ -32,7 +30,7 @@ function App() {
         width="500"
         type={type()}
         options={options()}
-        series={series().list}
+        series={series()}
       />
       <button onClick={() => setType((prev) => prev === 'line' ? 'bar' : 'line')}>Change type</button>
     </div>
