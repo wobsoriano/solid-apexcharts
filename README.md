@@ -21,25 +21,20 @@ import { SolidApexCharts } from 'solid-apexcharts';
 
 function App() {
   const [options] = createSignal({
-    chart: {
-      id: 'solidchart-example',
-    },
     xaxis: {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   });
-  const [series] = createSignal({
-    list: [
-      {
-        name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
-      },
-    ]
-  });
+  const [series] = createSignal([
+    {
+      name: 'series-1',
+      data: [30, 40, 35, 50, 49, 60, 70, 91],
+    },
+  ]);
 
   // options and series can be a store or signal
 
-  return <SolidApexCharts width="500" type="bar" options={options()} series={series().list} />;
+  return <SolidApexCharts width="500" type="bar" options={options()} series={series()} />;
 }
 ```
 
@@ -90,7 +85,14 @@ import { createApexCharts } from 'solid-apexcharts';
 
 const ApexCharts = createApexCharts();
 
-ApexCharts.exec('solidchart-example', 'updateSeries', [
+const [options] = createSignal({
+  chart: {
+    id: 'example',
+  },
+  // Other options
+});
+
+ApexCharts.exec('example', 'updateSeries', [
   {
     name: 'series-1',
     data: [60, 40, 20, 50, 49, 60, 95, 72],
