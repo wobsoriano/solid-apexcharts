@@ -37,7 +37,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   const init = () => {
     const newOptions = {
       chart: {
-        type: merged.type || unwrap(merged.options)?.chart?.type,
+        type: merged.type,
         height: merged.height,
         width: merged.width,
         events: {},
@@ -59,7 +59,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     on(
       () => merged.series,
       () => {
-        chart?.updateSeries(merged.series)
+        chart.updateSeries(merged.series)
       },
       {
         defer: true,
@@ -71,7 +71,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     on(
       () => merged.options,
       () => {
-        chart?.updateOptions(merged.options)
+        chart.updateOptions(merged.options)
       },
       {
         defer: true,
@@ -83,7 +83,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     on(
       () => [merged.type, merged.height, merged.width],
       () => {
-        chart?.destroy()
+        chart.destroy()
         init()
       },
       {
@@ -93,7 +93,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   )
 
   onCleanup(() => {
-    chart?.destroy()
+    chart.destroy()
   })
 
   return <div ref={rootEl!} />
