@@ -1,7 +1,7 @@
 {
   "name": "solid-apexcharts",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": false,
   "packageManager": "pnpm@8.6.0",
   "description": "Solid component for ApexCharts",
