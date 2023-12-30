@@ -5,7 +5,6 @@ import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js'
 import { unwrap } from 'solid-js/store'
 import { defu } from 'defu'
 
-type NonNullable<T> = Exclude<T, null | undefined>
 type ChartType = NonNullable<NonNullable<ApexOptions['chart']>['type']>
 type ChartSeries = NonNullable<ApexOptions['series']>
 
