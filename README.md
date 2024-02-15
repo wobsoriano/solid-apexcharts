@@ -73,10 +73,10 @@ function App() {
   ]);
 
   onMount(() => {
-    setInterval(() => {
-      const max = 90;
-      const min = 20;
+    const max = 90;
+    const min = 20;
 
+    setInterval(() => {
       setSeries((prevSeries) => {
         const newData = prevSeries[0].data.map(() => {
           return Math.floor(Math.random() * (max - min + 1)) + min
