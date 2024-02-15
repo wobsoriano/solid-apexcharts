@@ -57,8 +57,8 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   createEffect(
     on(
       () => merged.series,
-      () => {
-        chart.updateSeries(merged.series)
+      (series) => {
+        chart.updateSeries(series)
       },
       {
         defer: true,
@@ -69,8 +69,8 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   createEffect(
     on(
       () => merged.options,
-      () => {
-        chart.updateOptions(merged.options)
+      (options) => {
+        chart.updateOptions(options)
       },
       {
         defer: true,
