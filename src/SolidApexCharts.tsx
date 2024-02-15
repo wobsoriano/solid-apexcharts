@@ -10,14 +10,36 @@ type ChartSeries = NonNullable<ApexOptions['series']>
 
 type FixMeLater = any
 
-export interface ApexChartProps {
+export interface ApexChartEvents {
+  onAnimationEnd?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onBeforeMount?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onMounted?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onUpdated?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onMouseMove?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onMouseLeave?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onClick?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onXAxisLabelClick?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onLegendClick?(chart: ApexCharts, seriesIndex?: number, options?: ApexChartProps['options']): void
+  onMarkerClick?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onSelection?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onDataPointSelection?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onDataPointMouseEnter?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onDataPointMouseLeave?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onBeforeZoom?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onBeforeResetZoom?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onZoomed?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onScrolled?(chart: ApexCharts, options?: ApexChartProps['options']): void
+  onBrushScrolled?(chart: ApexCharts, options?: ApexChartProps['options']): void
+}
+
+export type ApexChartProps = {
   type: ChartType
   options: ApexOptions
   series: ChartSeries
   width?: string | number
   height?: string | number
   [key: string]: FixMeLater
-}
+} & ApexChartEvents
 
 const SolidApexCharts: Component<ApexChartProps> = props => {
   let rootEl: HTMLDivElement
@@ -42,6 +64,14 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
         events: {},
       },
       series: unwrap(merged.series),
+    }
+
+    for (const key in props) {
+      if (key.startsWith('on')) {
+        const eventKey = key.charAt(2).toLowerCase() + key.slice(3);
+        // @ts-ignore
+        newOptions.chart.events[eventKey] = props[key];
+      }
     }
 
     const config = defu(unwrap(merged.options), newOptions)
