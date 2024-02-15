@@ -54,6 +54,43 @@ This will render the following chart
 
 Simple! Just change the `series` or any `option` and it will automatically re-render the chart.
 
+Here's an example updating the chart data with some random series to illustrate the point.
+
+```tsx
+import { SolidApexCharts } from 'solid-apexcharts';
+
+function App() {
+  const options = {
+    xaxis: {
+      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+    },
+  };
+  const [series, setSeries] = createSignal([
+    {
+      name: 'series-1',
+      data: [30, 40, 35, 50, 49, 60, 70, 91],
+    },
+  ]);
+
+  onMount(() => {
+    setInterval(() => {
+      const max = 90;
+      const min = 20;
+
+      setSeries((prevSeries) => {
+        const newData = prevSeries[0].data.map(() => {
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        })
+
+        return [{ data: newData }]
+      });
+    }, 1000)
+  })
+
+  return <SolidApexCharts type="bar" options={options} series={series()} />;
+}
+```
+
 ## Methods
 
 Changing the props will automatically update the chart. You only need to call these methods to update the chart forcefully.
