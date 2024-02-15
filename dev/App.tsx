@@ -10,7 +10,7 @@ function App() {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   })
-  const [series] = createSignal([
+  const [series, setSeries] = createSignal([
     {
       name: 'series-1',
       data: [30, 40, 35, 50, 49, 60, 70, 91],
@@ -18,9 +18,18 @@ function App() {
   ])
 
   onMount(() => {
-    setTimeout(() => {
-      // chartRef?.destroy();
-    }, 2000)
+    setInterval(() => {
+      const max = 90;
+      const min = 20;
+
+      setSeries((prevSeries) => {
+        const newData = prevSeries[0]!.data.map(() => {
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        })
+
+        return [{ name: 'series-1', data: newData }]
+      });
+    }, 1000)
   })
 
   return (

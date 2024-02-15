@@ -82,7 +82,7 @@ function App() {
           return Math.floor(Math.random() * (max - min + 1)) + min
         })
 
-        return [{ data: newData }]
+        return [{ name: 'series-1', data: newData }]
       });
     }, 1000)
   })
