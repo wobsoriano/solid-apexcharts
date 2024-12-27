@@ -10,7 +10,7 @@ type ChartSeries = NonNullable<ApexOptions['series']>
 
 type FixMeLater = any
 
-export interface ApexChartEvents {
+interface ApexChartEvents {
   onAnimationEnd?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onBeforeMount?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onMounted?(chart: ApexCharts, options?: ApexChartProps['options']): void
