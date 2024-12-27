@@ -19,16 +19,16 @@ function App() {
 
   onMount(() => {
     setInterval(() => {
-      const max = 90;
-      const min = 20;
+      const max = 90
+      const min = 20
 
-      setSeries((prevSeries) => {
+      setSeries(prevSeries => {
         const newData = prevSeries[0]!.data.map(() => {
           return Math.floor(Math.random() * (max - min + 1)) + min
         })
 
         return [{ name: 'series-1', data: newData }]
-      });
+      })
     }, 1000)
   })
 
@@ -41,7 +41,9 @@ function App() {
         options={options()}
         series={series()}
       />
-      <button onClick={() => setType((prev) => prev === 'line' ? 'bar' : 'line')}>Change type</button>
+      <button onClick={() => setType(prev => (prev === 'line' ? 'bar' : 'line'))}>
+        Change type
+      </button>
     </div>
   )
 }

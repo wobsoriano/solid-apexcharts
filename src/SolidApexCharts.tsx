@@ -10,7 +10,7 @@ type ChartSeries = NonNullable<ApexOptions['series']>
 
 type FixMeLater = any
 
-export interface ApexChartEvents {
+interface ApexChartEvents {
   onAnimationEnd?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onBeforeMount?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onMounted?(chart: ApexCharts, options?: ApexChartProps['options']): void
@@ -22,9 +22,21 @@ export interface ApexChartEvents {
   onLegendClick?(chart: ApexCharts, seriesIndex?: number, options?: ApexChartProps['options']): void
   onMarkerClick?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
   onSelection?(chart: ApexCharts, options?: ApexChartProps['options']): void
-  onDataPointSelection?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
-  onDataPointMouseEnter?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
-  onDataPointMouseLeave?(e: MouseEvent, chart?: ApexCharts, options?: ApexChartProps['options']): void
+  onDataPointSelection?(
+    e: MouseEvent,
+    chart?: ApexCharts,
+    options?: ApexChartProps['options'],
+  ): void
+  onDataPointMouseEnter?(
+    e: MouseEvent,
+    chart?: ApexCharts,
+    options?: ApexChartProps['options'],
+  ): void
+  onDataPointMouseLeave?(
+    e: MouseEvent,
+    chart?: ApexCharts,
+    options?: ApexChartProps['options'],
+  ): void
   onBeforeZoom?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onBeforeResetZoom?(chart: ApexCharts, options?: ApexChartProps['options']): void
   onZoomed?(chart: ApexCharts, options?: ApexChartProps['options']): void
@@ -68,14 +80,14 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
 
     for (const key in props) {
       if (key.startsWith('on')) {
-        const eventKey = key.charAt(2).toLowerCase() + key.slice(3);
+        const eventKey = key.charAt(2).toLowerCase() + key.slice(3)
         // @ts-ignore
-        newOptions.chart.events[eventKey] = props[key];
+        newOptions.chart.events[eventKey] = props[key]
       }
     }
 
     const config = defu(unwrap(merged.options), newOptions)
-    chart = new ApexCharts(rootEl, config)
+    chart = new ApexCharts(rootEl!, config)
     props.ref?.(chart)
     chart.render()
   }
@@ -87,7 +99,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   createEffect(
     on(
       () => merged.series,
-      (series) => {
+      series => {
         chart.updateSeries(series)
       },
       {
@@ -99,7 +111,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
   createEffect(
     on(
       () => merged.options,
-      (options) => {
+      options => {
         chart.updateOptions(options)
       },
       {
