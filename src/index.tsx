@@ -1,3 +1,3 @@
-import SolidApexCharts, { type ApexChartProps } from './SolidApexCharts'
+import SolidApexCharts, { type ApexChartProps, type ApexChartEvents } from './SolidApexCharts'
 
-export { SolidApexCharts, type ApexChartProps }
+export { SolidApexCharts, type ApexChartProps, type ApexChartEvents }
