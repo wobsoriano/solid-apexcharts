@@ -61,7 +61,7 @@
     "lint:types": "tsc --noEmit"
   },
   "peerDependencies": {
-    "apexcharts": "^3.40.0",
+    "apexcharts": "^4.0.0",
     "solid-js": "^1.6.0"
   },
   "dependencies": {
@@ -71,7 +71,7 @@
     "@types/node": "^20.11.19",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
-    "apexcharts": "^3.45.2",
+    "apexcharts": "^4.3.0",
     "bumpp": "^9.3.0",
     "concurrently": "^8.2.2",
     "esbuild": "^0.20.0",

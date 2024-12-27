@@ -75,7 +75,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     }
 
     const config = defu(unwrap(merged.options), newOptions)
-    chart = new ApexCharts(rootEl, config)
+    chart = new ApexCharts(rootEl!, config)
     props.ref?.(chart)
     chart.render()
   }
