@@ -1,4 +1,4 @@
-import ApexCharts from 'apexcharts/dist/apexcharts.esm.js'
+import type ApexCharts from 'apexcharts'
 import type { ApexOptions } from 'apexcharts'
 import type { Component } from 'solid-js'
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js'
@@ -67,7 +67,7 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     props,
   )
 
-  const init = () => {
+  const init = async () => {
     const newOptions = {
       chart: {
         type: merged.type,
@@ -87,7 +87,8 @@ const SolidApexCharts: Component<ApexChartProps> = props => {
     }
 
     const config = defu(unwrap(merged.options), newOptions)
-    chart = new ApexCharts(rootEl!, config)
+    const Chart = (await import('apexcharts/dist/apexcharts.esm.js')).default
+    chart = new Chart(rootEl!, config)
     props.ref?.(chart)
     chart.render()
   }
