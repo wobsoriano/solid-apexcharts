@@ -1,31 +1,12 @@
+import { URL, fileURLToPath } from 'node:url'
+import solid from '@solidjs/vite-plugin'
 import { defineConfig } from 'vite'
-import solidPlugin from 'vite-plugin-solid'
 
 export default defineConfig({
+  plugins: [solid()],
   resolve: {
-    alias: {
-      src: '../src',
-    },
+    alias: [{ find: 'src', replacement: fileURLToPath(new URL('../src', import.meta.url)) }],
   },
-  plugins: [
-    solidPlugin(),
-    {
-      name: 'Reaplace env variables',
-      transform(code, id) {
-        if (id.includes('node_modules')) return code
-
-        return code
-          .replace(/process\.env\.SSR/g, 'false')
-          .replace(/process\.env\.DEV/g, 'true')
-          .replace(/process\.env\.PROD/g, 'false')
-          .replace(/process\.env\.NODE_ENV/g, '"development"')
-          .replace(/import\.meta\.env\.SSR/g, 'false')
-          .replace(/import\.meta\.env\.DEV/g, 'true')
-          .replace(/import\.meta\.env\.PROD/g, 'false')
-          .replace(/import\.meta\.env\.NODE_ENV/g, '"development"')
-      },
-    },
-  ],
   server: {
     port: 3000,
   },

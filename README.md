@@ -6,6 +6,8 @@
 
 Build interactive visualizations in Solid. Powered by [ApexCharts](https://apexcharts.com/).
 
+This release targets [Solid 2](https://v2.solidjs.com/). The app needs `solid-js` and `@solidjs/web` at `2.0.0-rc.16` or newer.
+
 ## Quick start
 
 Install it:
@@ -17,22 +19,22 @@ npm install apexcharts solid-apexcharts
 Use it:
 
 ```tsx
-import { SolidApexCharts } from 'solid-apexcharts';
+import { SolidApexCharts } from 'solid-apexcharts'
 
 function App() {
   const [options] = createSignal({
     xaxis: {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
-  });
+  })
   const [series] = createSignal([
     {
       name: 'series-1',
       data: [30, 40, 35, 50, 49, 60, 70, 91],
     },
-  ]);
+  ])
 
-  return <SolidApexCharts width="500" type="bar" options={options()} series={series()} />;
+  return <SolidApexCharts width="500" type="bar" options={options()} series={series()} />
 }
 ```
 
@@ -45,7 +47,7 @@ This will render the following chart
 | Prop         | Type          | Description                                                                                                                                                                                      |
 | ------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **series\*** | Array         | The series is an array which accepts an object in the following format. To know more about the format of dataSeries, checkout [Series](https://apexcharts.com/docs/series/) docs on the website. |
-| **type\***   | String        | `line`, `area`, `bar`, `pie`, `donut`, `scatter`, `bubble`, `heatmap`, `radialBar`, `candlestick`, `polarArea`                                                                                                |
+| **type\***   | String        | `line`, `area`, `bar`, `pie`, `donut`, `scatter`, `bubble`, `heatmap`, `radialBar`, `candlestick`, `polarArea`                                                                                   |
 | **width**    | Number/String | Possible values for width can be `100%` or `400px` or `400`                                                                                                                                      |
 | **height**   | Number/String | Possible values for height can be `100%` or `300px` or `300`                                                                                                                                     |
 | **options**  | Object        | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/)                                                                                      |
@@ -57,37 +59,40 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 Here's an example updating the chart data with some random series to illustrate the point.
 
 ```tsx
-import { SolidApexCharts } from 'solid-apexcharts';
+import { createSignal, onSettled } from 'solid-js'
+import { SolidApexCharts } from 'solid-apexcharts'
 
 function App() {
   const options = {
     xaxis: {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
-  };
+  }
   const [series, setSeries] = createSignal([
     {
       name: 'series-1',
       data: [30, 40, 35, 50, 49, 60, 70, 91],
     },
-  ]);
+  ])
 
-  onMount(() => {
-    const max = 90;
-    const min = 20;
+  onSettled(() => {
+    const max = 90
+    const min = 20
 
-    setInterval(() => {
+    const id = setInterval(() => {
       setSeries((prevSeries) => {
         const newData = prevSeries[0].data.map(() => {
           return Math.floor(Math.random() * (max - min + 1)) + min
         })
 
         return [{ name: 'series-1', data: newData }]
-      });
+      })
     }, 1000)
+
+    return () => clearInterval(id)
   })
 
-  return <SolidApexCharts type="bar" options={options} series={series()} />;
+  return <SolidApexCharts type="bar" options={options} series={series()} />
 }
 ```
 
@@ -96,16 +101,16 @@ function App() {
 Changing the props will automatically update the chart. You only need to call these methods to update the chart forcefully.
 
 ```tsx
-import ApexCharts from 'apexcharts';
+import ApexCharts from 'apexcharts'
 
 function App() {
-  let chartRef: ApexCharts;
+  let chartRef: ApexCharts
 
   function updateChart() {
-    chartRef.updateOptions({ colors: newColors });
+    chartRef.updateOptions({ colors: newColors })
   }
 
-  return <SolidApexCharts ref={chartRef} />;
+  return <SolidApexCharts ref={chartRef} />
 }
 ```
 
@@ -116,7 +121,7 @@ function App() {
 Target the chart by its `id` to call the methods from some other place
 
 ```tsx
-import ApexCharts from 'apexcharts';
+import ApexCharts from 'apexcharts'
 
 // or for ESM build
 // import ApexCharts from 'apexcharts/dist/apexcharts.esm.js'
@@ -125,15 +130,14 @@ const [options] = createSignal({
   chart: {
     id: 'example',
   },
-  // Other options
-});
+})
 
 ApexCharts.exec('example', 'updateSeries', [
   {
     name: 'series-1',
     data: [60, 40, 20, 50, 49, 60, 95, 72],
   },
-]);
+])
 ```
 
 ## License

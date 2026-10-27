@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "types": ["vite/client"]
+    "paths": {
+      "src": ["../src/index.tsx"]
+    }
   },
+  "include": ["./**/*.ts", "./**/*.tsx", "../src/**/*.ts", "../src/**/*.tsx", "../types.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

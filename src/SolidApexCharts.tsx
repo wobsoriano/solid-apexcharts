@@ -1,8 +1,7 @@
 import type ApexCharts from 'apexcharts'
 import type { ApexOptions } from 'apexcharts'
 import type { Component } from 'solid-js'
-import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js'
-import { unwrap } from 'solid-js/store'
+import { createEffect, merge, onSettled, snapshot } from 'solid-js'
 import { defu } from 'defu'
 
 type ChartType = NonNullable<NonNullable<ApexOptions['chart']>['type']>
@@ -53,92 +52,95 @@ export type ApexChartProps = {
   [key: string]: FixMeLater
 } & ApexChartEvents
 
-const SolidApexCharts: Component<ApexChartProps> = props => {
-  let rootEl: HTMLDivElement
-  let chart: ApexCharts
+const SolidApexCharts: Component<ApexChartProps> = (props) => {
+  let rootEl: HTMLDivElement | undefined
+  let chart: ApexCharts | undefined
+  let disposed = false
 
-  const merged = mergeProps(
+  const merged = merge(
     {
       height: 'auto',
       width: '100%',
-      series: [],
-      type: 'line',
+      series: [] as ChartSeries,
+      type: 'line' as ChartType,
     },
     props,
   )
 
   const init = async () => {
+    const events: Record<string, unknown> = {}
     const newOptions = {
       chart: {
         type: merged.type,
         height: merged.height,
         width: merged.width,
-        events: {},
+        events,
       },
-      series: unwrap(merged.series),
+      series: snapshot(merged.series),
     }
 
     for (const key in props) {
       if (key.startsWith('on')) {
         const eventKey = key.charAt(2).toLowerCase() + key.slice(3)
-        // @ts-ignore
-        newOptions.chart.events[eventKey] = props[key]
+        events[eventKey] = props[key]
       }
     }
 
-    const config = defu(unwrap(merged.options), newOptions)
+    const config = defu(snapshot(merged.options), newOptions)
     const Chart = (await import('apexcharts/dist/apexcharts.esm.js')).default
-    chart = new Chart(rootEl!, config)
-    props.ref?.(chart)
-    chart.render()
+    if (disposed || !rootEl) return
+
+    const next = new Chart(rootEl, config)
+    chart = next
+    props.ref?.(next)
+    if (disposed) {
+      next.destroy()
+      return
+    }
+    void next.render()
   }
 
-  onMount(() => {
-    init()
+  onSettled(() => {
+    void init()
+    return () => {
+      disposed = true
+      chart?.destroy()
+    }
   })
 
   createEffect(
-    on(
-      () => merged.series,
-      series => {
-        chart.updateSeries(series)
-      },
-      {
-        defer: true,
-      },
-    ),
+    () => {
+      const series = merged.series
+      return snapshot(series)
+    },
+    (series) => {
+      void chart?.updateSeries(series)
+    },
+    { defer: true },
   )
 
   createEffect(
-    on(
-      () => merged.options,
-      options => {
-        chart.updateOptions(options)
-      },
-      {
-        defer: true,
-      },
-    ),
+    () => {
+      const options = merged.options
+      return snapshot(options)
+    },
+    (options) => {
+      void chart?.updateOptions(options)
+    },
+    { defer: true },
   )
 
   createEffect(
-    on(
-      () => [merged.type, merged.height, merged.width],
-      () => {
-        chart.destroy()
-        init()
-      },
-      {
-        defer: true,
-      },
-    ),
+    () => [merged.type, merged.height, merged.width] as const,
+    () => {
+      chart?.destroy()
+      chart = undefined
+      void init()
+    },
+    { defer: true },
   )
 
-  onCleanup(() => {
-    chart.destroy()
-  })
-
-  return <div ref={rootEl!} />
+  return <div ref={(el) => (rootEl = el)} />
 }
 
 export default SolidApexCharts

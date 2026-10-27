@@ -1,87 +1,76 @@
 {
   "name": "solid-apexcharts",
-  "type": "module",
   "version": "0.6.0",
   "private": false,
-  "packageManager": "pnpm@10.14.0",
   "description": "Solid component for ApexCharts",
-  "author": "Robert Soriano",
-  "license": "MIT",
+  "keywords": [
+    "charts",
+    "solid"
+  ],
   "homepage": "https://github.com/wobsoriano/solid-apexcharts#readme",
+  "bugs": {
+    "url": "https://github.com/wobsoriano/solid-apexcharts/issues"
+  },
+  "license": "MIT",
+  "author": "Robert Soriano",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wobsoriano/solid-apexcharts.git"
   },
-  "bugs": {
-    "url": "https://github.com/wobsoriano/solid-apexcharts/issues"
-  },
-  "keywords": [
-    "solid",
-    "charts"
-  ],
-  "sideEffects": false,
-  "exports": {
-    "solid": {
-      "development": "./dist/dev.jsx",
-      "import": "./dist/index.jsx"
-    },
-    "development": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/dev.js"
-      }
-    },
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "browser": {},
-  "typesVersions": {},
   "files": [
     "dist"
   ],
-  "scripts": {
-    "dev": "vite serve dev",
-    "test": "echo \"test not setup\"",
-    "build": "tsup",
-    "prepublishOnly": "pnpm build",
-    "typecheck": "tsc --noEmit",
-    "release": "bumpp && pnpm publish",
-    "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
-    "lint": "concurrently pnpm:lint:*",
-    "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 'src/**/*.{js,ts,tsx,jsx}'",
-    "lint:types": "tsc --noEmit"
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "solid": "./dist/index.jsx",
+      "default": "./dist/index.js"
+    }
   },
-  "peerDependencies": {
-    "apexcharts": "^4.0.0 || ^5.0.0",
-    "solid-js": "^1.6.0"
+  "scripts": {
+    "dev": "vp dev dev",
+    "prepare": "vp config",
+    "build": "vp pack",
+    "test": "playwright test",
+    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit && tsc -p dev --noEmit",
+    "lint": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "format": "vp fmt",
+    "check": "vp check",
+    "release": "bumpp && pnpm publish"
   },
   "dependencies": {
     "defu": "^6.1.4"
   },
   "devDependencies": {
-    "@types/node": "^20.11.19",
-    "@typescript-eslint/eslint-plugin": "^7.0.1",
-    "@typescript-eslint/parser": "^7.0.1",
+    "@playwright/test": "^1.56.1",
+    "@solidjs/vite-plugin": "3.0.0-next.51",
+    "@solidjs/web": "2.0.0-rc.18",
+    "@types/node": "^24.13.3",
     "apexcharts": "^4.3.0",
     "bumpp": "^9.3.0",
-    "concurrently": "^8.2.2",
-    "esbuild": "^0.20.0",
-    "esbuild-plugin-solid": "^0.5.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-no-only-tests": "^3.1.0",
-    "eslint-plugin-solid": "^0.13.1",
-    "prettier": "3.0.0",
-    "solid-js": "^1.8.15",
-    "tsup": "^8.0.2",
-    "tsup-preset-solid": "^2.2.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.3",
-    "vite-plugin-solid": "^2.10.1"
+    "solid-js": "2.0.0-rc.18",
+    "typescript": "^6.0.3",
+    "unplugin-solid": "^3.0.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+    "vite-plus": "^1.4.0"
+  },
+  "peerDependencies": {
+    "@solidjs/web": ">=2.0.0-rc.16 <3",
+    "apexcharts": "^4.0.0 || ^5.0.0",
+    "solid-js": ">=2.0.0-rc.16 <3"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+      "vitest": "5.0.5"
+    }
   }
 }

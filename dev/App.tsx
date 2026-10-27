@@ -1,9 +1,7 @@
-import { createSignal, onMount } from 'solid-js'
-import type ApexCharts from 'apexcharts'
+import { createSignal, onSettled } from 'solid-js'
 import { type ApexChartProps, SolidApexCharts } from 'src'
 
 function App() {
-  let chartRef: ApexCharts
   const [type, setType] = createSignal<ApexChartProps['type']>('bar')
   const [options] = createSignal<ApexChartProps['options']>({
     xaxis: {
@@ -17,12 +15,11 @@ function App() {
     },
   ])
 
-  onMount(() => {
-    setInterval(() => {
-      const max = 90
-      const min = 20
-
-      setSeries(prevSeries => {
+  onSettled(() => {
+    const max = 90
+    const min = 20
+    const id = setInterval(() => {
+      setSeries((prevSeries) => {
         const newData = prevSeries[0]!.data.map(() => {
           return Math.floor(Math.random() * (max - min + 1)) + min
         })
@@ -30,18 +27,14 @@ function App() {
         return [{ name: 'series-1', data: newData }]
       })
     }, 1000)
+
+    return () => clearInterval(id)
   })
 
   return (
     <div>
-      <SolidApexCharts
-        ref={chartRef!}
-        width="500"
-        type={type()}
-        options={options()}
-        series={series()}
-      />
-      <button onClick={() => setType(prev => (prev === 'line' ? 'bar' : 'line'))}>
+      <SolidApexCharts width="500" type={type()} options={options()} series={series()} />
+      <button onClick={() => setType((prev) => (prev === 'line' ? 'bar' : 'line'))}>
         Change type
       </button>
     </div>
