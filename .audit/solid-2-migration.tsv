@@ -1,0 +1,11 @@
+ts	phase	decision	why	evidence	result
+2026-10-27T04:02:00Z	start	started the Solid 2 and Vite+ migration	the library was still on Solid 1, tsup, and ESLint	session 01a17b80-8caa-7020-b09d-6006ff39c836	open
+2026-10-27T04:05:00Z	frame	done means typecheck, vp pack, and a playground chart that survives a type change	a compile is not proof the chart still mounts	package.json scripts	open
+2026-10-27T04:06:00Z	frame	skipped a design bakeoff	the package shape is the solid-sonner Vite+ layout plus the Solid 2 migration guide	https://github.com/wobsoriano/solid-sonner/blob/main/vite.config.ts	skipped
+2026-10-27T04:08:00Z	baseline	recorded Solid 1 before edits	tsup build succeeded and typecheck failed on process in tsup.config.ts	main e8aec0e	tsup build exit 0, tsc exit 2
+2026-10-27T04:20:00Z	toolchain	aliased vite to @voidzero-dev/vite-plus-core 1.4.0	vp pack refused the standalone vite 8 package	package.json pnpm.overrides	vp pack exit 0
+2026-10-27T04:40:00Z	dev	dev server uses @solidjs/vite-plugin 3.0.0-next.51	unplugin-solid 3.0.0 passes componentNames, which compiler 2.0.0-rc.18 rejects	dev/vite.config.ts	playwright 1 passed
+2026-10-27T04:50:00Z	verify	re-ran check, typecheck, pack, and the chart test after marking ApexCharts promises as ignored	the lint run is the gate CI will run	pnpm check, pnpm typecheck, pnpm build, pnpm test	all exit 0
+2026-10-27T04:20:54Z	verify	supersedes the 04:50 verify row	that row was written after the fact, and a later format pass was not retested before commit 43d638c	commit 43d638c	superseded
+2026-10-27T04:20:54Z	init	a newer init wins if an older ApexCharts import is still in flight	type changes call init again while the first import can still resolve	src/SolidApexCharts.tsx	pnpm test 1 passed
+2026-10-27T04:20:54Z	server	left onSettled without a window guard	solid-js server onSettled only reserves a child id and does not call the callback	node_modules/solid-js/dist/server.js:2083	no server callback

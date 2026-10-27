@@ -2,5 +2,11 @@ node_modules
 dist
 gitignore
 
-# VSC Settings
 .vscode/settings.json
+
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# vite-plus generated hook dispatcher
+.vite-hooks/_

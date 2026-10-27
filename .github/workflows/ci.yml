@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: voidzero-dev/setup-vp@v1.22.0
+        with:
+          node-version: '24'
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile', '--prefer-offline']
+
+      - run: vp check
+
+      - run: vp run typecheck
+
+  Playwright:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: voidzero-dev/setup-vp@v1.22.0
+        with:
+          node-version: '24'
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile', '--prefer-offline']
+
+      - run: vp pack
+
+      - run: vp exec playwright install --with-deps
+
+      - run: vp run test
