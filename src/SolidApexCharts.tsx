@@ -56,6 +56,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
   let rootEl: HTMLDivElement | undefined
   let chart: ApexCharts | undefined
   let disposed = false
+  let generation = 0
 
   const merged = merge(
     {
@@ -68,6 +69,7 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
   )
 
   const init = async () => {
+    const current = ++generation
     const events: Record<string, unknown> = {}
     const newOptions = {
       chart: {
@@ -88,15 +90,15 @@ const SolidApexCharts: Component<ApexChartProps> = (props) => {
 
     const config = defu(snapshot(merged.options), newOptions)
     const Chart = (await import('apexcharts/dist/apexcharts.esm.js')).default
-    if (disposed || !rootEl) return
+    if (disposed || current !== generation || !rootEl) return
 
     const next = new Chart(rootEl, config)
-    chart = next
-    props.ref?.(next)
-    if (disposed) {
+    if (disposed || current !== generation) {
       next.destroy()
       return
     }
+    chart = next
+    props.ref?.(next)
     void next.render()
   }
 
